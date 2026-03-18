@@ -1,7 +1,24 @@
 # Psychological Underpinnings of Misinformation Perception
 
-## Overview
-This project investigates how psychological features influence the perceived credibility of misinformation using a combination of human studies and machine learning.
+**Authors:** Ansh Madan (ansh.madan_ug25@ashoka.edu.in) & Anagha Bhavsar (anagha.bhavsar_ug25@ashoka.edu.in)
+
+## Project Overview
+
+This project addresses the critical challenge of automated misinformation detection by focusing on **psychological manipulation techniques** rather than content verification. Our system analyzes headlines and predicts the presence of six psychological mechanisms across three theoretical frameworks.
+
+### Detected Mechanisms
+
+**Framework 0 — Baseline**
+- `no_mechanism`: Headlines with no detectable psychological manipulation
+
+**Framework 1 — Elaboration Likelihood Model (ELM)**
+- `central_route_present`: Appeals to systematic, logical processing
+- `peripheral_route_present`: Appeals to emotional or heuristic processing
+
+**Framework 2 — Cognitive Biases**
+- `naturalness_bias`: Exploitation of preference for "natural" solutions
+- `availability_bias`: Manipulation through memorable/recent examples
+- `illusory_correlation`: Creation of false pattern recognition
 
 ---
 
