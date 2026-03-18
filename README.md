@@ -1,5 +1,3 @@
-# Misinformation-Perception
-
 # Psychological Underpinnings of Misinformation Perception
 
 ## Overview
