@@ -1,0 +1,295 @@
+{
+  "best_trial_number": 5,
+  "best_val_f1": 0.8881358456438129,
+  "best_params": {
+    "learning_rate": 6.978281265126042e-05,
+    "batch_size": 16,
+    "num_epochs": 3,
+    "dropout_rate": 0.2554709158757928,
+    "weight_decay": 0.0006516990611177178,
+    "warmup_ratio": 0.1657475018303859,
+    "max_length": 256
+  },
+  "all_trials": [
+    {
+      "number": 0,
+      "value": 0.8330926706709045,
+      "params": {
+        "learning_rate": 5.611516415334504e-06,
+        "batch_size": 8,
+        "num_epochs": 2,
+        "dropout_rate": 0.16239780813448107,
+        "weight_decay": 0.00014936568554617635,
+        "warmup_ratio": 0.17323522915498704,
+        "max_length": 128
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 1,
+      "value": 0.884782143780153,
+      "params": {
+        "learning_rate": 8.706020878304853e-05,
+        "batch_size": 8,
+        "num_epochs": 2,
+        "dropout_rate": 0.2216968971838151,
+        "weight_decay": 0.003752055855124282,
+        "warmup_ratio": 0.08638900372842316,
+        "max_length": 128
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 2,
+      "value": 0.7336745422440535,
+      "params": {
+        "learning_rate": 3.839629299804171e-06,
+        "batch_size": 32,
+        "num_epochs": 2,
+        "dropout_rate": 0.3056937753654447,
+        "weight_decay": 0.005987474910461402,
+        "warmup_ratio": 0.009290082543999545,
+        "max_length": 64
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 3,
+      "value": 0.885508952000927,
+      "params": {
+        "learning_rate": 7.902619549708236e-05,
+        "batch_size": 8,
+        "num_epochs": 2,
+        "dropout_rate": 0.37369321060486277,
+        "weight_decay": 0.0020914981329035616,
+        "warmup_ratio": 0.024407646968955768,
+        "max_length": 256
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 4,
+      "value": 0.8401487816462355,
+      "params": {
+        "learning_rate": 3.292759134423615e-06,
+        "batch_size": 8,
+        "num_epochs": 4,
+        "dropout_rate": 0.17394178221021084,
+        "weight_decay": 0.08105016126411589,
+        "warmup_ratio": 0.15502656467222292,
+        "max_length": 64
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 5,
+      "value": 0.8881358456438129,
+      "params": {
+        "learning_rate": 6.978281265126042e-05,
+        "batch_size": 16,
+        "num_epochs": 3,
+        "dropout_rate": 0.2554709158757928,
+        "weight_decay": 0.0006516990611177178,
+        "warmup_ratio": 0.1657475018303859,
+        "max_length": 256
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 6,
+      "value": 0.6244246916881628,
+      "params": {
+        "learning_rate": 1.9135880487692305e-06,
+        "batch_size": 32,
+        "num_epochs": 5,
+        "dropout_rate": 0.17948627261366898,
+        "weight_decay": 0.00010388823104027947,
+        "warmup_ratio": 0.16309228569096684,
+        "max_length": 256
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 7,
+      "value": 0.557203820933535,
+      "params": {
+        "learning_rate": 1.4063366777718187e-06,
+        "batch_size": 32,
+        "num_epochs": 5,
+        "dropout_rate": 0.23235920994105969,
+        "weight_decay": 0.0001551225912648476,
+        "warmup_ratio": 0.062196464343132446,
+        "max_length": 128
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 8,
+      "value": 0.8865566588268987,
+      "params": {
+        "learning_rate": 5.948746813219775e-05,
+        "batch_size": 32,
+        "num_epochs": 5,
+        "dropout_rate": 0.3245108790277985,
+        "weight_decay": 0.02055424552015076,
+        "warmup_ratio": 0.09875911927287816,
+        "max_length": 64
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 9,
+      "value": 0.7032907364839516,
+      "params": {
+        "learning_rate": 1.643549747511132e-06,
+        "batch_size": 16,
+        "num_epochs": 4,
+        "dropout_rate": 0.46302658957043724,
+        "weight_decay": 0.0005595986878006087,
+        "warmup_ratio": 0.08207658460712595,
+        "max_length": 64
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 10,
+      "value": 0.8700762972511195,
+      "params": {
+        "learning_rate": 2.114131819217956e-05,
+        "batch_size": 16,
+        "num_epochs": 3,
+        "dropout_rate": 0.10718475024592783,
+        "weight_decay": 0.0007311229860911676,
+        "warmup_ratio": 0.13598592356582467,
+        "max_length": 256
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 11,
+      "value": 0.8648496107910569,
+      "params": {
+        "learning_rate": 2.1896833110245045e-05,
+        "batch_size": 16,
+        "num_epochs": 6,
+        "dropout_rate": 0.34357710285014953,
+        "weight_decay": 0.021240029415410946,
+        "warmup_ratio": 0.12309871330101617,
+        "max_length": 64
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 12,
+      "value": 0.8660081687004737,
+      "params": {
+        "learning_rate": 3.286048950063271e-05,
+        "batch_size": 32,
+        "num_epochs": 5,
+        "dropout_rate": 0.40705039908031654,
+        "weight_decay": 0.018170188744437276,
+        "warmup_ratio": 0.18922700806065998,
+        "max_length": 256
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 13,
+      "value": 0.8816769913685156,
+      "params": {
+        "learning_rate": 4.285638052984472e-05,
+        "batch_size": 16,
+        "num_epochs": 3,
+        "dropout_rate": 0.29109504780863554,
+        "weight_decay": 0.09192133107794964,
+        "warmup_ratio": 0.11761821889480914,
+        "max_length": 64
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 14,
+      "value": 0.8467701671924456,
+      "params": {
+        "learning_rate": 1.0676916501410142e-05,
+        "batch_size": 32,
+        "num_epochs": 6,
+        "dropout_rate": 0.27312788853407177,
+        "weight_decay": 0.001049417851837,
+        "warmup_ratio": 0.04831098659606795,
+        "max_length": 256
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 15,
+      "value": 0.8777026680190888,
+      "params": {
+        "learning_rate": 4.996462527729594e-05,
+        "batch_size": 16,
+        "num_epochs": 3,
+        "dropout_rate": 0.4337585570065022,
+        "weight_decay": 0.015861068502677374,
+        "warmup_ratio": 0.19851022144779878,
+        "max_length": 64
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 16,
+      "value": 0.8617890403554445,
+      "params": {
+        "learning_rate": 1.3109833200274291e-05,
+        "batch_size": 16,
+        "num_epochs": 4,
+        "dropout_rate": 0.3581112966614213,
+        "weight_decay": 0.00032680251032764576,
+        "warmup_ratio": 0.10091019482849344,
+        "max_length": 256
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 17,
+      "value": 0.8812512018707122,
+      "params": {
+        "learning_rate": 5.6739695632212674e-05,
+        "batch_size": 32,
+        "num_epochs": 5,
+        "dropout_rate": 0.49093873039216673,
+        "weight_decay": 0.008454465736728861,
+        "warmup_ratio": 0.14118776047276504,
+        "max_length": 256
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 18,
+      "value": 0.8647301076749624,
+      "params": {
+        "learning_rate": 2.0347509238182543e-05,
+        "batch_size": 16,
+        "num_epochs": 3,
+        "dropout_rate": 0.25655191474639605,
+        "weight_decay": 0.043288679375816826,
+        "warmup_ratio": 0.1119231786193567,
+        "max_length": 64
+      },
+      "state": "TrialState.PRUNED"
+    },
+    {
+      "number": 19,
+      "value": 0.8803745699913254,
+      "params": {
+        "learning_rate": 9.157925327168777e-05,
+        "batch_size": 32,
+        "num_epochs": 6,
+        "dropout_rate": 0.32547232761148687,
+        "weight_decay": 0.0017563650855548169,
+        "warmup_ratio": 0.06250574085537537,
+        "max_length": 128
+      },
+      "state": "TrialState.PRUNED"
+    }
+  ]
+}

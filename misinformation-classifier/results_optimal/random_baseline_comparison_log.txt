@@ -1,0 +1,246 @@
+
+================================================================================
+RANDOM BASELINE COMPARISON LOG
+================================================================================
+Generated: 2025-12-21 12:21:23
+Random Seed: 42
+
+================================================================================
+  1: DATA LOADING AND PREPARATION
+================================================================================
+Dataset file: Dataset/Final.json
+Total samples in dataset: 2050
+
+Data Split Configuration:
+  Training set:   1640 samples (80%)
+  Validation set: 205 samples (10%)
+  Test set:       205 samples (10%)
+
+Using test set for evaluation: 205 samples
+
+Label Mapping:
+  no_mechanism                   -> framework0_feature1
+  central_route_present          -> framework1_feature1
+  peripheral_route_present       -> framework1_feature2
+  naturalness_bias               -> framework2_feature1
+  availability_bias              -> framework2_feature2
+  illusory_correlation           -> framework2_feature3
+
+================================================================================
+  2: EXTRACT TRUE LABELS FROM TEST SET
+================================================================================
+True labels shape: (205, 6)
+  - 205 samples
+  - 6 labels per sample
+
+True Label Distribution in Test Set:
+Label                            Positive   Negative   % Positive
+-----------------------------------------------------------------
+no_mechanism                           11        194         5.4%
+central_route_present                  61        144        29.8%
+peripheral_route_present               58        147        28.3%
+naturalness_bias                       35        170        17.1%
+availability_bias                      50        155        24.4%
+illusory_correlation                  105        100        51.2%
+
+================================================================================
+  3: UNIFORM RANDOM DISTRIBUTION BASELINE
+================================================================================
+
+--------------------------------------------------------------------------------
+3.1 Uniform Random Generation Process
+--------------------------------------------------------------------------------
+
+Uniform Random Baseline Method:
+  1. Generate random probabilities from Uniform(0, 1) distribution
+  2. Each probability p_ij ~ U(0, 1) for sample i, label j
+  3. Apply threshold: prediction = 1 if p > 0.5, else 0
+  4. This simulates random guessing with 50% probability for each label
+
+Generated probabilities shape: (205, 6)
+Threshold applied: 0.5
+
+Sample of first 5 predictions (probabilities):
+Sample     no_mecha   central_   peripher   naturaln   availabi   illusory
+1            0.3745     0.9507     0.7320     0.5987     0.1560     0.1560
+2            0.0581     0.8662     0.6011     0.7081     0.0206     0.9699
+3            0.8324     0.2123     0.1818     0.1834     0.3042     0.5248
+4            0.4319     0.2912     0.6119     0.1395     0.2921     0.3664
+5            0.4561     0.7852     0.1997     0.5142     0.5924     0.0465
+
+Sample of first 5 predictions (after threshold):
+Sample     no_mecha   central_   peripher   naturaln   availabi   illusory
+1                 0          1          1          1          0          0
+2                 0          1          1          1          0          1
+3                 1          0          0          0          0          1
+4                 0          0          1          0          0          0
+5                 0          1          0          1          1          0
+
+Corresponding true labels:
+Sample     no_mecha   central_   peripher   naturaln   availabi   illusory
+1                 0          0          0          0          1          1
+2                 0          0          1          0          0          0
+3                 0          0          0          0          0          1
+4                 1          0          0          0          0          0
+5                 0          1          0          0          0          1
+
+Prediction Distribution (Uniform Random):
+Label                              Pred=1     Pred=0     % Pred=1
+-----------------------------------------------------------------
+no_mechanism                          112         93        54.6%
+central_route_present                 112         93        54.6%
+peripheral_route_present               99        106        48.3%
+naturalness_bias                      112         93        54.6%
+availability_bias                      88        117        42.9%
+illusory_correlation                  101        104        49.3%
+
+--------------------------------------------------------------------------------
+3.2 Uniform Random Metrics Calculation
+--------------------------------------------------------------------------------
+
+Per-Label Metrics (Uniform Random):
+Label                             Precision       Recall           F1     Accuracy
+--------------------------------------------------------------------------------
+no_mechanism                         0.0357       0.3636       0.0650       0.4390
+central_route_present                0.3214       0.5902       0.4162       0.5073
+peripheral_route_present             0.2525       0.4310       0.3185       0.4780
+naturalness_bias                     0.1964       0.6286       0.2993       0.4976
+availability_bias                    0.1932       0.3400       0.2464       0.4927
+illusory_correlation                 0.4851       0.4667       0.4757       0.4732
+
+Aggregate Metrics (Uniform Random):
+  Macro F1:           0.3035
+  Micro F1:           0.3242
+  Macro Precision:    0.2474
+  Macro Recall:       0.4700
+  Micro Precision:    0.2452
+  Micro Recall:       0.4781
+  ROC-AUC:            0.4858
+  Hamming Accuracy:   0.4813
+  Exact Match Acc:    0.0244
+
+================================================================================
+  4: TRAINED MODEL RESULTS
+================================================================================
+Loaded from: results_optimal/test_metrics.json
+
+Per-Label Metrics (Trained Model):
+Label                             Precision       Recall           F1     Accuracy
+--------------------------------------------------------------------------------
+no_mechanism                         0.6154       0.5333       0.5714       0.9415
+central_route_present                0.7538       0.7101       0.7313       0.8244
+peripheral_route_present             0.8594       0.8594       0.8594       0.9122
+naturalness_bias                     0.7143       0.6818       0.6977       0.8732
+availability_bias                    0.6579       0.6944       0.6757       0.8829
+illusory_correlation                 0.8718       0.8644       0.8681       0.8488
+
+Aggregate Metrics (Trained Model):
+  Macro F1:           0.7339
+  Micro F1:           0.7854
+  Macro Precision:    0.7454
+  Macro Recall:       0.7239
+  Micro Precision:    0.7935
+  Micro Recall:       0.7775
+  ROC-AUC:            0.9104
+  Hamming Accuracy:   0.8805
+  Exact Match Acc:    0.5073
+
+================================================================================
+  5: COMPARISON - MODEL vs UNIFORM RANDOM
+================================================================================
+
+--------------------------------------------------------------------------------
+5.1 Per-Label F1 Score Comparison
+--------------------------------------------------------------------------------
+Label                              Model F1    Random F1   Difference      Ratio
+--------------------------------------------------------------------------------
+no_mechanism                         0.5714       0.0650      +0.5064       8.79x
+central_route_present                0.7313       0.4162      +0.3152       1.76x
+peripheral_route_present             0.8594       0.3185      +0.5409       2.70x
+naturalness_bias                     0.6977       0.2993      +0.3984       2.33x
+availability_bias                    0.6757       0.2464      +0.4293       2.74x
+illusory_correlation                 0.8681       0.4757      +0.3924       1.82x
+
+--------------------------------------------------------------------------------
+5.2 Per-Label Precision Comparison
+--------------------------------------------------------------------------------
+Label                                 Model       Random   Difference
+----------------------------------------------------------------------
+no_mechanism                         0.6154       0.0357      +0.5797
+central_route_present                0.7538       0.3214      +0.4324
+peripheral_route_present             0.8594       0.2525      +0.6068
+naturalness_bias                     0.7143       0.1964      +0.5179
+availability_bias                    0.6579       0.1932      +0.4647
+illusory_correlation                 0.8718       0.4851      +0.3866
+
+--------------------------------------------------------------------------------
+5.3 Per-Label Recall Comparison
+--------------------------------------------------------------------------------
+Label                                 Model       Random   Difference
+----------------------------------------------------------------------
+no_mechanism                         0.5333       0.3636      +0.1697
+central_route_present                0.7101       0.5902      +0.1200
+peripheral_route_present             0.8594       0.4310      +0.4283
+naturalness_bias                     0.6818       0.6286      +0.0532
+availability_bias                    0.6944       0.3400      +0.3544
+illusory_correlation                 0.8644       0.4667      +0.3977
+
+--------------------------------------------------------------------------------
+5.4 Per-Label Accuracy Comparison
+--------------------------------------------------------------------------------
+Label                                 Model       Random   Difference
+----------------------------------------------------------------------
+no_mechanism                         0.9415       0.4390      +0.5024
+central_route_present                0.8244       0.5073      +0.3171
+peripheral_route_present             0.9122       0.4780      +0.4341
+naturalness_bias                     0.8732       0.4976      +0.3756
+availability_bias                    0.8829       0.4927      +0.3902
+illusory_correlation                 0.8488       0.4732      +0.3756
+
+--------------------------------------------------------------------------------
+5.5 Aggregate Metrics Comparison
+--------------------------------------------------------------------------------
+Metric                           Model       Random   Difference   % Improvement
+--------------------------------------------------------------------------------
+Macro F1                        0.7339       0.3035      +0.4304         +141.8%
+Micro F1                        0.7854       0.3242      +0.4612         +142.3%
+Macro Precision                 0.7454       0.2474      +0.4980         +201.3%
+Macro Recall                    0.7239       0.4700      +0.2539          +54.0%
+Micro Precision                 0.7935       0.2452      +0.5483         +223.6%
+Micro Recall                    0.7775       0.4781      +0.2993          +62.6%
+ROC-AUC                         0.9104       0.4858      +0.4246          +87.4%
+Hamming Accuracy                0.8805       0.4813      +0.3992          +82.9%
+Exact Match Accuracy            0.5073       0.0244      +0.4829        +1980.0%
+
+================================================================================
+  6: SUMMARY AND CONCLUSIONS
+================================================================================
+
+SUMMARY TABLE
+
+Metric                                Trained Model  Uniform Random
+======================================================================
+Macro F1                                     0.7339          0.3035
+Micro F1                                     0.7854          0.3242
+ROC-AUC                                      0.9104          0.4858
+Hamming Accuracy                             0.8805          0.4813
+Exact Match Accuracy                         0.5073          0.0244
+======================================================================
+
+KEY FINDINGS:
+
+1. Model achieves 0.7339 Macro F1 vs 0.3035 for random baseline
+   Improvement: +43.0 percentage points (2.4x better)
+
+2. Model achieves 0.9104 ROC-AUC vs 0.4858 for random baseline
+   ROC-AUC of 0.91 indicates excellent discriminative ability
+   Random baseline ROC-AUC ~0.50 confirms random chance performance
+
+3. Per-Label Analysis:
+   Best improvement:  no_mechanism (8.8x better, 0.5714 vs 0.0650)
+   Smallest improvement: central_route_present (1.8x better, 0.7313 vs 0.4162)
+
+4. The trained DistilBERT model significantly outperforms random guessing,
+================================================================================
+LOG SAVED
+================================================================================

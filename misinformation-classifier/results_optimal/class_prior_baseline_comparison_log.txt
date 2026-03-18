@@ -1,0 +1,318 @@
+
+================================================================================
+CLASS-PRIOR BASELINE COMPARISON LOG
+================================================================================
+Generated: 2025-12-21 12:30:07
+Random Seed: 42
+
+================================================================================
+STEP 1: DATA LOADING AND PREPARATION
+================================================================================
+Dataset file: Dataset/Final.json
+Total samples in dataset: 2050
+
+Data Split Configuration:
+  Training set:   1640 samples (80%)
+  Validation set: 205 samples (10%)
+  Test set:       205 samples (10%)
+
+Using training set to compute class priors: 1640 samples
+Using test set for evaluation: 205 samples
+
+Label Mapping:
+  no_mechanism                   -> framework0_feature1
+  central_route_present          -> framework1_feature1
+  peripheral_route_present       -> framework1_feature2
+  naturalness_bias               -> framework2_feature1
+  availability_bias              -> framework2_feature2
+  illusory_correlation           -> framework2_feature3
+
+================================================================================
+STEP 2: COMPUTE CLASS PRIORS FROM TRAINING DATA
+================================================================================
+
+Class-Prior Baseline Method:
+  This baseline predicts labels based on their frequency in the training data.
+  It represents a classifier that only knows "how often each label appears"
+  but doesn't actually look at the text content.
+  
+  If 'illusory_correlation' appears in 54% of training samples,
+  this baseline will predict it with 54% probability for each test sample.
+
+
+Class Prior Probabilities (from training data):
+Label                               Count      Total   Prior Prob
+-----------------------------------------------------------------
+no_mechanism                          110       1640       0.0671
+central_route_present                 520       1640       0.3171
+peripheral_route_present              573       1640       0.3494
+naturalness_bias                      317       1640       0.1933
+availability_bias                     232       1640       0.1415
+illusory_correlation                  928       1640       0.5659
+
+Interpretation:
+  - These probabilities will be used to make predictions
+  - Higher prior = more likely to predict positive
+  - This baseline ignores the actual text content
+
+================================================================================
+STEP 3: EXTRACT TRUE LABELS FROM TEST SET
+================================================================================
+True labels shape: (205, 6)
+  - 205 samples
+  - 6 labels per sample
+
+True Label Distribution in Test Set:
+Label                            Positive   Negative   % Positive
+-----------------------------------------------------------------
+no_mechanism                           11        194         5.4%
+central_route_present                  61        144        29.8%
+peripheral_route_present               58        147        28.3%
+naturalness_bias                       35        170        17.1%
+availability_bias                      50        155        24.4%
+illusory_correlation                  105        100        51.2%
+
+================================================================================
+STEP 4: CLASS-PRIOR BASELINE PREDICTIONS
+================================================================================
+
+--------------------------------------------------------------------------------
+4.1 Prediction Generation Process
+--------------------------------------------------------------------------------
+
+Prediction Process:
+  1. For each sample and each label, draw a random number r ~ Uniform(0, 1)
+  2. Compare r to the class prior probability p
+  3. If r < p, predict 1 (positive), otherwise predict 0 (negative)
+  
+  This ensures predictions follow the same distribution as the training data.
+
+Class Priors Used for Prediction:
+  no_mechanism                   p = 0.0671 (6.7%)
+  central_route_present          p = 0.3171 (31.7%)
+  peripheral_route_present       p = 0.3494 (34.9%)
+  naturalness_bias               p = 0.1933 (19.3%)
+  availability_bias              p = 0.1415 (14.1%)
+  illusory_correlation           p = 0.5659 (56.6%)
+
+Sample of first 5 predictions:
+Sample     no_mecha   central_   peripher   naturaln   availabi   illusory
+---------------------------------------------------------------------------
+Random draws (r):
+1            0.3745     0.9507     0.7320     0.5987     0.1560     0.1560
+2            0.0581     0.8662     0.6011     0.7081     0.0206     0.9699
+3            0.8324     0.2123     0.1818     0.1834     0.3042     0.5248
+4            0.4319     0.2912     0.6119     0.1395     0.2921     0.3664
+5            0.4561     0.7852     0.1997     0.5142     0.5924     0.0465
+
+Class priors (p):
+             0.0671     0.3171     0.3494     0.1933     0.1415     0.5659
+
+Predictions (1 if r < p):
+1                 0          0          0          0          0          1
+2                 1          0          0          0          1          0
+3                 0          1          1          1          0          1
+4                 0          1          0          1          0          1
+5                 0          0          1          0          0          1
+
+Corresponding true labels:
+1                 0          0          0          0          1          1
+2                 0          0          1          0          0          0
+3                 0          0          0          0          0          1
+4                 1          0          0          0          0          0
+5                 0          1          0          0          0          1
+
+Prediction Distribution (Class-Prior Baseline):
+Label                              Pred=1     Pred=0     % Pred=1      Prior
+---------------------------------------------------------------------------
+no_mechanism                           14        191         6.8%       6.7%
+central_route_present                  58        147        28.3%      31.7%
+peripheral_route_present               83        122        40.5%      34.9%
+naturalness_bias                       32        173        15.6%      19.3%
+availability_bias                      46        159        22.4%      14.1%
+illusory_correlation                  120         85        58.5%      56.6%
+
+--------------------------------------------------------------------------------
+4.2 Class-Prior Baseline Metrics Calculation
+--------------------------------------------------------------------------------
+
+Per-Label Metrics (Class-Prior Baseline):
+Label                             Precision       Recall           F1     Accuracy
+--------------------------------------------------------------------------------
+no_mechanism                         0.0000       0.0000       0.0000       0.8780
+central_route_present                0.3621       0.3443       0.3529       0.6244
+peripheral_route_present             0.2771       0.3966       0.3262       0.5366
+naturalness_bias                     0.0000       0.0000       0.0000       0.6732
+availability_bias                    0.2609       0.2400       0.2500       0.6488
+illusory_correlation                 0.5167       0.5905       0.5511       0.5073
+
+Aggregate Metrics (Class-Prior Baseline):
+  Macro F1:           0.2467
+  Micro F1:           0.3507
+  Macro Precision:    0.2361
+  Macro Recall:       0.2619
+  Micro Precision:    0.3343
+  Micro Recall:       0.3688
+  ROC-AUC:            0.4858
+  Hamming Accuracy:   0.6447
+  Exact Match Acc:    0.0439
+
+================================================================================
+STEP 5: TRAINED MODEL RESULTS
+================================================================================
+Loaded from: results_optimal/test_metrics.json
+
+Per-Label Metrics (Trained Model):
+Label                             Precision       Recall           F1     Accuracy
+--------------------------------------------------------------------------------
+no_mechanism                         0.6154       0.5333       0.5714       0.9415
+central_route_present                0.7538       0.7101       0.7313       0.8244
+peripheral_route_present             0.8594       0.8594       0.8594       0.9122
+naturalness_bias                     0.7143       0.6818       0.6977       0.8732
+availability_bias                    0.6579       0.6944       0.6757       0.8829
+illusory_correlation                 0.8718       0.8644       0.8681       0.8488
+
+Aggregate Metrics (Trained Model):
+  Macro F1:           0.7339
+  Micro F1:           0.7854
+  Macro Precision:    0.7454
+  Macro Recall:       0.7239
+  Micro Precision:    0.7935
+  Micro Recall:       0.7775
+  ROC-AUC:            0.9104
+  Hamming Accuracy:   0.8805
+  Exact Match Acc:    0.5073
+
+================================================================================
+STEP 6: DETAILED COMPARISON - MODEL vs CLASS-PRIOR BASELINE
+================================================================================
+
+--------------------------------------------------------------------------------
+6.1 Per-Label F1 Score Comparison
+--------------------------------------------------------------------------------
+Label                              Model F1     Prior F1   Difference      Ratio
+--------------------------------------------------------------------------------
+no_mechanism                         0.5714       0.0000      +0.5714        infx
+central_route_present                0.7313       0.3529      +0.3784       2.07x
+peripheral_route_present             0.8594       0.3262      +0.5331       2.63x
+naturalness_bias                     0.6977       0.0000      +0.6977        infx
+availability_bias                    0.6757       0.2500      +0.4257       2.70x
+illusory_correlation                 0.8681       0.5511      +0.3170       1.58x
+
+--------------------------------------------------------------------------------
+6.2 Per-Label Precision Comparison
+--------------------------------------------------------------------------------
+Label                                 Model        Prior   Difference
+----------------------------------------------------------------------
+no_mechanism                         0.6154       0.0000      +0.6154
+central_route_present                0.7538       0.3621      +0.3918
+peripheral_route_present             0.8594       0.2771      +0.5823
+naturalness_bias                     0.7143       0.0000      +0.7143
+availability_bias                    0.6579       0.2609      +0.3970
+illusory_correlation                 0.8718       0.5167      +0.3551
+
+--------------------------------------------------------------------------------
+6.3 Per-Label Recall Comparison
+--------------------------------------------------------------------------------
+Label                                 Model        Prior   Difference
+----------------------------------------------------------------------
+no_mechanism                         0.5333       0.0000      +0.5333
+central_route_present                0.7101       0.3443      +0.3659
+peripheral_route_present             0.8594       0.3966      +0.4628
+naturalness_bias                     0.6818       0.0000      +0.6818
+availability_bias                    0.6944       0.2400      +0.4544
+illusory_correlation                 0.8644       0.5905      +0.2739
+
+--------------------------------------------------------------------------------
+6.4 Per-Label Accuracy Comparison
+--------------------------------------------------------------------------------
+Label                                 Model        Prior   Difference
+----------------------------------------------------------------------
+no_mechanism                         0.9415       0.8780      +0.0634
+central_route_present                0.8244       0.6244      +0.2000
+peripheral_route_present             0.9122       0.5366      +0.3756
+naturalness_bias                     0.8732       0.6732      +0.2000
+availability_bias                    0.8829       0.6488      +0.2341
+illusory_correlation                 0.8488       0.5073      +0.3415
+
+--------------------------------------------------------------------------------
+6.5 Aggregate Metrics Comparison
+--------------------------------------------------------------------------------
+Metric                           Model        Prior   Difference   % Improvement
+--------------------------------------------------------------------------------
+Macro F1                        0.7339       0.2467      +0.4872         +197.5%
+Micro F1                        0.7854       0.3507      +0.4347         +124.0%
+Macro Precision                 0.7454       0.2361      +0.5093         +215.7%
+Macro Recall                    0.7239       0.2619      +0.4620         +176.4%
+Micro Precision                 0.7935       0.3343      +0.4592         +137.4%
+Micro Recall                    0.7775       0.3688      +0.4087         +110.8%
+ROC-AUC                         0.9104       0.4858      +0.4246          +87.4%
+Hamming Accuracy                0.8805       0.6447      +0.2358          +36.6%
+Exact Match Accuracy            0.5073       0.0439      +0.4634        +1055.6%
+
+================================================================================
+STEP 7: THREE-WAY COMPARISON (MODEL vs CLASS-PRIOR vs UNIFORM RANDOM)
+================================================================================
+
+--------------------------------------------------------------------------------
+7.1 Aggregate Metrics - Three-Way Comparison
+--------------------------------------------------------------------------------
+Metric                           Model  Class-Prior Uniform Rand
+-----------------------------------------------------------------
+Macro F1                        0.7339       0.2467       0.3035
+Micro F1                        0.7854       0.3507       0.3242
+Macro Precision                 0.7454       0.2361       0.2474
+Macro Recall                    0.7239       0.2619       0.4700
+Micro Precision                 0.7935       0.3343       0.2452
+Micro Recall                    0.7775       0.3688       0.4781
+ROC-AUC                         0.9104       0.4858       0.4858
+Hamming Accuracy                0.8805       0.6447       0.4813
+Exact Match Accuracy            0.5073       0.0439       0.0244
+
+--------------------------------------------------------------------------------
+7.2 Per-Label F1 - Three-Way Comparison
+--------------------------------------------------------------------------------
+Label                               Model      Prior    Uniform
+-----------------------------------------------------------------
+no_mechanism                       0.5714     0.0000     0.0650
+central_route_present              0.7313     0.3529     0.4162
+peripheral_route_present           0.8594     0.3262     0.3185
+naturalness_bias                   0.6977     0.0000     0.2993
+availability_bias                  0.6757     0.2500     0.2464
+illusory_correlation               0.8681     0.5511     0.4757
+
+================================================================================
+STEP 8: SUMMARY AND CONCLUSIONS
+================================================================================
+
+SUMMARY TABLE
+
+Metric                                Trained Model     Class-Prior
+======================================================================
+Macro F1                                     0.7339          0.2467
+Micro F1                                     0.7854          0.3507
+ROC-AUC                                      0.9104          0.4858
+Hamming Accuracy                             0.8805          0.6447
+Exact Match Accuracy                         0.5073          0.0439
+======================================================================
+
+KEY FINDINGS:
+
+1. Model achieves 0.7339 Macro F1 vs 0.2467 for class-prior baseline
+   -> Improvement: +48.7 percentage points (3.0x better)
+
+2. Model achieves 0.9104 ROC-AUC vs 0.4858 for class-prior baseline
+   -> ROC-AUC ~0.50 for class-prior confirms it's essentially random
+   -> Model's 0.91 ROC-AUC shows it learned discriminative features
+
+3. Per-Label Analysis:
+   - Best improvement:  no_mechanism (infx better, 0.5714 vs 0.0000)
+   - Smallest improvement: illusory_correlation (1.6x better, 0.8681 vs 0.5511)
+
+4. The class-prior baseline knows the label distribution but ignores text content.
+   The model's superior performance proves it learned text-based patterns,
+   not just label frequency statistics.
+
+================================================================================
+LOG SAVED
+================================================================================

@@ -1,0 +1,12 @@
+
+# Best Hyperparameters (copy to config.py)
+# ========================================
+# Validation F1: 0.8881
+
+learning_rate: float = 6.98e-05
+batch_size: int = 16
+num_epochs: int = 3
+dropout_rate: float = 0.255
+weight_decay: float = 0.0007
+warmup_ratio: float = 0.166
+max_length: int = 256
